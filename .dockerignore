@@ -1,0 +1,9 @@
+# Only the files required to build the runtime enter the Docker context.
+*
+!Dockerfile
+!.dockerignore
+!package.json
+!npm-shrinkwrap.json
+!tsconfig.json
+!src/
+!src/**

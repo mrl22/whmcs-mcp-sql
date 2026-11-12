@@ -1,0 +1,45 @@
+# Publish only the project files and source directories listed below.
+# Unlisted top-level files and folders remain local by default.
+/*
+!/.gitignore
+!/.dockerignore
+!/.env.example
+!/Dockerfile
+!/compose.yaml
+!/compose.test.yaml
+!/GLOSSARY.md
+!/README.md
+!/LICENSE
+!/LICENSE.*
+!/CHANGELOG.md
+!/CONTRIBUTING.md
+!/SECURITY.md
+!/package.json
+!/npm-shrinkwrap.json
+!/tsconfig.json
+!/.github/
+!/src/
+!/scripts/
+!/test/
+!/docs/
+
+# Exclude local/generated files even inside a published directory.
+node_modules/
+dist/
+.env
+.env.*
+!.env.example
+*.sql
+!test/fixture-schema.sql
+*.tgz
+*.log
+*.pem
+*.key
+*.p12
+*.pfx
+.idea/
+.vscode/
+__pycache__/
+.DS_Store
+coverage/
+test-results/

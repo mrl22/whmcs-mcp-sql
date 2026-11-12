@@ -1,0 +1,13 @@
+services:
+  fixture-db:
+    image: mysql:8.4
+    environment:
+      MYSQL_ROOT_PASSWORD: fixture-only
+      MYSQL_DATABASE: whmcs_fixture
+    ports: ["127.0.0.1:13316:3306"]
+    tmpfs: [/var/lib/mysql]
+    healthcheck:
+      test: [CMD, mysqladmin, ping, -h, 127.0.0.1, -pfixture-only]
+      interval: 2s
+      timeout: 2s
+      retries: 60

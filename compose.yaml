@@ -1,0 +1,19 @@
+services:
+  whmcs-mcp-sql:
+    build: .
+    image: whmcs-mcp-sql:local
+    restart: unless-stopped
+    init: true
+    ports:
+      - "${MCP_BIND_ADDRESS:-127.0.0.1}:${MCP_PUBLISH_PORT:-3100}:3100"
+    env_file: .env
+    environment:
+      MCP_TRANSPORT: http
+      MCP_HTTP_HOST: 0.0.0.0
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    read_only: true
+    tmpfs:
+      - /tmp:size=16m,noexec,nosuid
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]

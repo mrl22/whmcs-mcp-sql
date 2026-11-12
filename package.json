@@ -1,0 +1,57 @@
+{
+  "name": "whmcs-mcp-sql",
+  "version": "1.0.0",
+  "description": "Read-only WHMCS analysis over MCP using direct MySQL access",
+  "type": "module",
+  "private": true,
+  "files": [
+    "src",
+    "dist",
+    "test",
+    "scripts",
+    "tsconfig.json",
+    "npm-shrinkwrap.json",
+    "README.md",
+    "docs",
+    "Dockerfile",
+    "compose.yaml",
+    "compose.test.yaml",
+    ".env.example",
+    ".dockerignore",
+    "GLOSSARY.md"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "bin": {
+    "whmcs-mcp-sql": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/index.js",
+    "prepack": "npm run build",
+    "package": "npm run build && python3 scripts/package.py && python3 scripts/verify-package.py",
+    "dev": "tsx src/index.ts",
+    "format": "prettier --write src test scripts/smoke.ts package.json tsconfig.json compose.yaml compose.test.yaml README.md docs GLOSSARY.md",
+    "format:check": "prettier --check src test scripts/smoke.ts package.json tsconfig.json compose.yaml compose.test.yaml README.md docs GLOSSARY.md",
+    "test": "tsx --test test/*.test.ts",
+    "test:integration": "tsx --test test/integration/*.test.ts",
+    "test:docker": "bash scripts/test-docker.sh",
+    "check": "npm run format:check && npm run build && npm test",
+    "smoke": "tsx scripts/smoke.ts"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.32.2",
+    "express": "5.3.0",
+    "mysql2": "3.24.6",
+    "node-sql-parser": "5.4.0",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.0.0",
+    "prettier": "3.10.1",
+    "tsx": "^4.20.0",
+    "typescript": "^5.8.0"
+  }
+}

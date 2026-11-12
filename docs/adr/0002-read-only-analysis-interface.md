@@ -1,0 +1,3 @@
+# Named read tools and restricted SQL analysis
+
+The user selected both named WHMCS read tools and a general SQL analysis interface. The package must keep database access read-only and expose customer, billing, email, and support information while excluding credentials and authentication/payment secrets. This requires SQL validation and field-access enforcement across both interfaces; output redaction alone cannot protect against queries that filter or aggregate secret values. SELECT-only database privileges, query limits, and timeouts form additional boundaries. The exact permitted SQL grammar and sensitive-field policy will be specified before implementation.
